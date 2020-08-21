@@ -26,22 +26,35 @@ CROSS is a research project developing a star tracker for use in small satellite
 
 ## Features
 ### Deployment
-I used cPanel to implement git hooks which automatically deploy the ```public_html``` directory when I push a commit from my local machine to a remote repo hosted on the website. I can also push the code to this remote GitHub repo when desired.
+I implemented git hooks which automatically deploy the ```public_html``` directory when I push a commit from my local machine to a remote repo hosted on the website (this was relatively straightforward using cPanel). I also set up my local machine to push to multiple remote repositories, giving me control of whether I deploy code to the website or publish to GitHub.
 
 ### Sync Badge
 I wanted to put a badge on this GitHub repository which indicates when the two remote repos (described in [Deployment](#deployment)) are up to date with the same commits.
 
-To provide public access to the most recent commit hash from the website, I used a git post-receive hook which allows me to automate shell commands to run whenever I push code to the deployment repository. The script updates a simple [text file on the website](http://crossstartracker.com/commit.txt) with the commit hash of the new most recent commit on the deployed repository.
+To provide public access to the most recent commit hash from the website, I used a git post-receive hook which allows me to run shell commands whenever I push code to the deployment repository. The shell script updates a simple [text file on the website](http://crossstartracker.com/commit.txt) with the commit hash of the most recent commit on the deployed repository.
 
-The badge is linked to an [endpoint I wrote](https://runkit.com/matthewsuntup/5f36498d66513e001a0e8ee9), hosted on RunKit. In this Node.js script, I used [octonode](https://github.com/pksunkara/octonode) to access the GitHub API and retrieve the most recent commit on this repository. I got the website hash by simply reading the automatically updated text file hosted on the website. These two hashes are compared and the badge displays whether the corresponding repos are in sync or not.
+The badge is linked to a Node.js [endpoint I wrote](https://runkit.com/matthewsuntup/5f36498d66513e001a0e8ee9), hosted on RunKit. I used [octonode](https://github.com/pksunkara/octonode) to access the GitHub API and retrieve the most recent commit on this repository, and got the website hash by reading the text file on the website. These two hashes are compared and the badge displays whether the corresponding repos are in sync or not.
 
 ### Responsive Design
-The website uses BootStrap 4 to provide a responsive web page. However, it was largely designed desktop-first and I'm still working on improving the mobile experience.
+The website uses Bootstrap 4 to provide a responsive web page. However, it was largely designed desktop-first and I'm still working on improving the mobile experience.
 
 ## Lessons
 One of the most interesting parts of this project for me was actually creating the [Sync Badge](#sync-badge) for this README. I didn't have any prior experience with Node.js or web development in general so it was a great learning experience. In the future I definitely want to take advantage of tools like RunKit and do more extensive web development.
 
 Additionally, I hadn't previously set up a local git repo with multiple remote repositories or utilised git hooks and learnt a lot while researching those.
+
+## Credit
+
+The content populating the website was sourced from the members of the CROSS research group:
+- Dominic Albertson
+- Iver Cairns
+- Joshua Critchley-Marrows
+- Julian Guinane
+- Benjamin Jarvis
+- Matthew Suntup
+- Xiaofeng Wu
+
+The CROSS logo featured on the website and at the top of this README was designed by Julian Guinane.
 
 ## Website
 
